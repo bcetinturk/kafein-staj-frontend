@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" routerLink="/">Navbar</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{show: showNavbarItems}">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" *ngFor="let category of categories">
-          <a class="nav-link">{{category.title}}</a>
+          <a class="nav-link" [routerLink]="['/category', category.categoryId]">{{category.title}}</a>
         </li>
       </ul>
     </div>
