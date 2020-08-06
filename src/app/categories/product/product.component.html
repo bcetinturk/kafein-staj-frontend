@@ -1,0 +1,15 @@
+<a [routerLink]="['/product', product.productId]">
+  <div class="list-group-item" [ngClass]="{'outOfStock': product.quantity===0}">
+    <div class="row">
+      <div class="col-9">
+        <h4>{{product.productName}}</h4>
+      </div>
+      <div class="col-3">
+        <p>Available: {{product.quantity}}</p>
+      </div>
+      <div class="col-12">
+        <p>{{product.price}} TL</p>
+      </div>
+    </div>
+  </div>
+</a>
