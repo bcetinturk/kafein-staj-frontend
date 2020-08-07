@@ -1,0 +1,51 @@
+<div class="row justify-content-md-center">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{product.productName}}</h4>
+        <h6 class="card-subtitle text-muted">
+          in <a [routerLink]="['/category', product.categoryId]">Cep Telefonu</a></h6>
+        <hr>
+        <p>{{product.description}}</p>
+        <hr>
+        <table class="table table-borderless">
+          <tr>
+            <th scope="row">Price</th>
+            <td>{{product.price}} TL</td>
+          </tr>
+          <tr>
+            <th scope="row">Quantity</th>
+            <td>{{product.quantity}}</td>
+          </tr>
+        </table>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button" (click)="decrease()">-</button>
+                </div>
+                <input
+                  type="number"
+                  placeholder="amount"
+                  class="form-control"
+                  name="amount"
+                  [(ngModel)]="amount"
+                  pattern="^[1-9]+[0-9]*$"
+                  required
+                  #amountField="ngModel">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="increase()">+</button>
+                </div>
+              </div>
+              <small *ngIf="amountField.touched && amountField.invalid" class="text-danger">Amount is invalid</small>
+            </div>
+            <div class="col-sm-8">
+              <button class="btn btn-success btn-block" [disabled]="f.touched && f.invalid">Add to Cart</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

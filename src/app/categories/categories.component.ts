@@ -27,7 +27,11 @@ export class CategoriesComponent implements OnInit {
       this.categoriesService.getProducts(this.currentCategoryId).subscribe((products) => {
         this.products = products;
         console.log(this.currentCategoryId);
-      });
+      }, (error => {
+        if (error.status === 404) {
+          this.products = [];
+        }
+      }));
     });
   }
 
