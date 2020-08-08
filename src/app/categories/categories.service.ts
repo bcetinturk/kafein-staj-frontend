@@ -17,4 +17,8 @@ export class CategoriesService {
   getProducts(id: number): Observable<Product[]> {
     return this.http.get<Product[]>(`http://localhost:8080/category/${id}/products`);
   }
+
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`http://localhost:8080/product/${id}`);
+  }
 }

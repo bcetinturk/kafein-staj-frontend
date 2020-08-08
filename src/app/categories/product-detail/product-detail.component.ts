@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../product.model';
 import {NgForm} from '@angular/forms';
+import {CategoriesService} from '../categories.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -8,19 +10,21 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-
-  product: Product = {
-    productName: 'Huawei P40 Lite',
-    productId: 20,
-    quantity: 20,
-    price: 6000,
-    categoryId: 2, // should be category name
-    description: 'Cheapest ever'
-  };
-  amount: number = 1;
-  constructor() { }
+  product: Product;
+  amount = 1;
+  constructor(
+    private categoriesService: CategoriesService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.categoriesService.getProduct(+this.route.snapshot.params.id).subscribe((product) => {
+      this.product = product;
+    });
+    this.route.params.subscribe((params) => {
+      this.categoriesService.getProduct(+params.id).subscribe((product) => {
+        this.product = product;
+      });
+    });
   }
 
 
