@@ -8,7 +8,9 @@ import { CategoriesComponent } from './categories/categories.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ProductComponent } from './categories/product/product.component';
 import { ProductDetailComponent } from './categories/product-detail/product-detail.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import {FormsModule} from '@angular/forms';
     HeaderComponent,
     CategoriesComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

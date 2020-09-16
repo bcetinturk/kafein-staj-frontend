@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="form my-5 p-3">
+        <div class="form-row">
+          <div class="col">
+            <label for="firstName">Ad</label>
+            <input id="firstName" type="text" class="form-control" formControlName="firstName">
+          </div>
+          <div class="col">
+            <label for="lastName">Soyad</label>
+            <input id="lastName" type="text" class="form-control" formControlName="lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">E-posta</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+          >
+          <small
+            class="text-danger"
+            *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+            E-posta girilmesi zorunlu
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="address">Adres</label>
+          <input
+            type="text"
+            id="address"
+            formControlName="address"
+            class="form-control"
+          >
+          <small
+            class="text-danger"
+            *ngIf="registerForm.controls.address.touched && registerForm.controls.address.invalid">
+            Adres girilmesi zorunlu
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefon numarası</label>
+          <input
+            type="text"
+            id="phone"
+            formControlName="phone"
+            class="form-control"
+          >
+          <small
+            class="text-danger"
+            *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+            E-posta girilmesi zorunlu
+          </small>
+        </div>
+        <div formGroupName="passwords">
+          <div class="form-group">
+            <label for="password1">Şifre</label>
+            <input
+              type="password"
+              id="password1"
+              formControlName="password1"
+              class="form-control"
+            >
+            <small class="text-danger"
+                   *ngIf="passwords.password1.touched && passwords.password1.invalid"
+            >Şifre en az 8 karakter olmalı</small>
+          </div>
+          <div class="form-group">
+            <label for="password2">Şifre (tekrar)</label>
+            <input
+              type="password"
+              id="password2"
+              formControlName="password2"
+              class="form-control"
+            >
+            <small class="text-danger"
+                   *ngIf="passwords.password2.touched && passwords.password2.invalid"
+            >Şifre en az 8 karakter olmalı</small>
+          </div>
+          <small class="text-danger" *ngIf="registerForm.controls.passwords.errors && registerForm.controls.passwords.errors['passwordsDoNotMatch']"
+          >Şifreler uyuşmuyor</small>
+        </div>
+        <button class="btn btn-primary" [disabled]="registerForm.invalid">
+          Kayıt ol
+        </button>
+        <div class="mt-2">Zaten üye misiniz? <a routerLink="/login">Giriş yapın</a>.</div>
+      </form>
+    </div>
+  </div>
+</div>
