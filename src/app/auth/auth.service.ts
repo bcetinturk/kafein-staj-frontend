@@ -32,4 +32,10 @@ export class AuthService {
       console.log('registered');
     });
   }
+
+  login(loginValues: {email: string, password: string}): void {
+    this.http.post('http://localhost:8080/signin', loginValues).subscribe((response) => {
+      console.log(response);
+    });
+  }
 }
