@@ -5,8 +5,6 @@ import {CategoriesService} from '../categories.service';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../../auth/auth.service';
-import {User} from '../../auth/user.model';
-import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-product-detail',
@@ -40,7 +38,7 @@ export class ProductDetailComponent implements OnInit {
       productId: this.product.productId,
       amount: this.amount
     }, {
-      headers: new HttpHeaders().set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJleHAiOjE2MDA5OTA4ODksImlhdCI6MTYwMDk1NDg4OX0.q7PXKp6yy6ZFCSaRVqJzd9WO8aJZsTdbp3Ja-SoNNog')
+      headers: new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
     }).subscribe();
   }
 
