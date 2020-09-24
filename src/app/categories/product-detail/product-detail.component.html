@@ -41,7 +41,11 @@
               <small *ngIf="amountField.touched && amountField.invalid" class="text-danger">Amount is invalid</small>
             </div>
             <div class="col-sm-8">
-              <button class="btn btn-success btn-block" [disabled]="f.touched && f.invalid">Add to Cart</button>
+              <button
+                class="btn btn-success btn-block"
+                [disabled]="f.touched && f.invalid"
+                (click)="onSubmit(f)"
+              >Add to Cart</button>
             </div>
           </div>
         </form>

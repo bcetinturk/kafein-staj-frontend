@@ -3,6 +3,10 @@ import {Product} from '../product.model';
 import {NgForm} from '@angular/forms';
 import {CategoriesService} from '../categories.service';
 import {ActivatedRoute} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from '../../auth/auth.service';
+import {User} from '../../auth/user.model';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +18,9 @@ export class ProductDetailComponent implements OnInit {
   amount = 1;
   constructor(
     private categoriesService: CategoriesService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.categoriesService.getProduct(+this.route.snapshot.params.id).subscribe((product) => {
@@ -29,7 +35,13 @@ export class ProductDetailComponent implements OnInit {
 
 
   onSubmit(f: NgForm): void {
-    console.log(f);
+    const user = this.authService.userSubject.value;
+    this.http.post('http://localhost:8080/user/basket', {
+      productId: this.product.productId,
+      amount: this.amount
+    }, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJleHAiOjE2MDA5OTA4ODksImlhdCI6MTYwMDk1NDg4OX0.q7PXKp6yy6ZFCSaRVqJzd9WO8aJZsTdbp3Ja-SoNNog')
+    }).subscribe();
   }
 
   decrease(): void {

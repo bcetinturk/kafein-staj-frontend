@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {BehaviorSubject} from 'rxjs';
+import {User} from './user.model';
+import {Router} from '@angular/router';
 
 interface RegisterValues {
   firstName: string;
@@ -18,7 +21,9 @@ interface RegisterValues {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  userSubject = new BehaviorSubject<User>(null);
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   register(registerValues: RegisterValues): void {
     this.http.post('http://localhost:8080/register', {
@@ -29,13 +34,15 @@ export class AuthService {
       address: registerValues.address,
       password: registerValues.passwords.password1,
     }).subscribe(() => {
-      console.log('registered');
+      this.router.navigate(['/login']);
     });
   }
 
   login(loginValues: {email: string, password: string}): void {
-    this.http.post('http://localhost:8080/signin', loginValues).subscribe((response) => {
+    this.http.post<{token: string}>('http://localhost:8080/signin', loginValues).subscribe((response) => {
       console.log(response);
+      this.userSubject.next(response);
+      this.router.navigate(['/']);
     });
   }
 }
