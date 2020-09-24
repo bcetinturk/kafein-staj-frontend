@@ -1,0 +1,27 @@
+<div class="row my-5">
+  <div class="offset-lg-1 col-lg-6 offset-md-1 col-md-8 col-sm-12 col-xs-12">
+    <h2>Sepetim</h2>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-start"
+      *ngFor="let basketItem of basket">
+        <div>
+          <h4 class="font-weight-bold">{{basketItem.productName}}</h4>
+          <div class="d-flex flex-row">
+            <p class="p-2 h5">{{basketItem.amount}}</p>
+            <p class="p-2 text-muted">x</p>
+            <p class="p-2 h5">{{basketItem.price}} TL</p>
+          </div>
+        </div>
+        <button class="btn btn-outline-danger" (click)="deleteItem(basketItem.productId)">X</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="offset-lg-1 col-lg-6 offset-md-1 col-md-8 col-sm-12 col-xs-12">
+    <p class="h5">Toplam: {{getTotal()}} TL</p>
+  </div>
+  <div class="col-lg-5  col-md-4 col-sm-12 col-xs-12">
+    <button class="btn btn-success btn-block">Sipariş Ver</button>
+  </div>
+</div>

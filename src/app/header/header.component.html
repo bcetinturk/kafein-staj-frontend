@@ -18,6 +18,9 @@
         <li class="nav-item" *ngFor="let category of categories">
           <a class="nav-link" [routerLink]="['/category', category.categoryId]">{{category.title}}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/basket">Sepet</a>
+        </li>
       </ul>
     </div>
 
