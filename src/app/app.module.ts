@@ -14,6 +14,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { BasketComponent } from './basket/basket/basket.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './orders/order/order.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { OrderComponent } from './orders/order/order.component';
     RegisterComponent,
     BasketComponent,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
