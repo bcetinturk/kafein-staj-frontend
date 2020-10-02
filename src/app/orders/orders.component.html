@@ -1,0 +1,19 @@
+<div class="row" *ngFor="let order of orders">
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <a [routerLink]="['/order', order.orderId]">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-8">
+            <p>{{order.orderNo}}</p>
+          </div>
+          <div class="col-sm-4">
+            <p>{{order.status}}</p>
+          </div>
+        </div>
+        <p>Toplam: {{order.totalPrice}}</p>
+      </div>
+      </a>
+    </div>
+  </div>
+</div>

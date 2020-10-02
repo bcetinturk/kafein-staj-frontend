@@ -1,0 +1,53 @@
+<div class="row border-bottom border-secondary mt-5">
+  <div class="col-lg-3 col-xs-12">
+    <h5 class="font-weight-bold">Sipariş Numarası</h5>
+  </div>
+  <div class="col-lg-7 col-xs-12">
+    {{order.orderNo}}
+  </div>
+</div>
+
+<div class="row border-bottom border-secondary mt-2">
+  <div class="col-lg-3 col-xs-12">
+    <h5 class="font-weight-bold">Sipariş Durumu</h5>
+  </div>
+  <div class="col-lg-7 col-xs-12">
+    {{order.status}}
+  </div>
+</div>
+
+<div class="row border-bottom border-secondary mt-2">
+  <div class="col-lg-3 col-xs-12">
+    <h5 class="font-weight-bold">Sipariş Tutarı</h5>
+  </div>
+  <div class="col-lg-7 col-xs-12">
+    {{order.totalPrice}}
+  </div>
+</div>
+
+<div class="row border-bottom border-secondary mt-2">
+  <div class="col-lg-3 col-xs-12">
+    <h5 class="font-weight-bold">Alıcı Adresi</h5>
+  </div>
+  <div class="col-lg-7 col-xs-12">
+    {{order.destination}}
+  </div>
+</div>
+
+<div class="row border-bottom border-secondary mt-2">
+  <div class="col-lg-3 col-xs-12">
+    <h5 class="font-weight-bold">Ürünler</h5>
+  </div>
+  <div class="col-lg-7 col-xs-12">
+    <table class="table">
+      <tr>
+        <th scope="col">Ürün Adı</th>
+        <th scope="col">Adet</th>
+      </tr>
+      <tr *ngFor="let product of order.products">
+        <th scope="row">{{product.productName}}</th>
+        <td>{{product.amount}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

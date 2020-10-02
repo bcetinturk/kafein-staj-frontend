@@ -6,13 +6,17 @@ import {ProductDetailComponent} from './categories/product-detail/product-detail
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {BasketComponent} from './basket/basket/basket.component';
+import {OrdersComponent} from './orders/orders.component';
+import {OrderComponent} from './orders/order/order.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'category/:id', component: CategoriesComponent},
   {path: 'product/:id', component: ProductDetailComponent},
-  {path: 'basket', component: BasketComponent}
+  {path: 'basket', component: BasketComponent},
+  {path: 'orders', component: OrdersComponent},
+  {path: 'order/:id', component: OrderComponent}
 ];
 
 @NgModule({

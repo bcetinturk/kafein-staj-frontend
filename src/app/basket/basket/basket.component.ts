@@ -44,4 +44,14 @@ export class BasketComponent implements OnInit {
       this.basket = this.basket.filter(item => item.productId !== productId);
     });
   }
+
+  placeOrder(): void {
+    const user = this.authService.userSubject.getValue();
+    this.http.post('http://localhost:8080/order/new', null,
+      {
+        headers: new HttpHeaders({'Authorization': `Bearer ${user.token}`})
+      }).subscribe(() => {
+      console.log('orders placed');
+    });
+  }
 }

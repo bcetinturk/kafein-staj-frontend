@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { BasketComponent } from './basket/basket/basket.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './orders/order/order.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BasketComponent } from './basket/basket/basket.component';
     ProductDetailComponent,
     LoginComponent,
     RegisterComponent,
-    BasketComponent
+    BasketComponent,
+    OrdersComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
