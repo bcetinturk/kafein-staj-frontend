@@ -42,7 +42,19 @@ export class AuthService {
     this.http.post<{token: string}>('http://localhost:8080/signin', loginValues).subscribe((response) => {
       console.log(response);
       this.userSubject.next(response);
+      localStorage.setItem('userToken', JSON.stringify(response));
       this.router.navigate(['/']);
     });
+  }
+
+  // called once application starts (app.component.js)
+  // gets token from localStorage
+  autoLogin(): void {
+    const userToken: {token: string} = JSON.parse(localStorage.getItem('userToken'));
+    if (!userToken) {
+      return;
+    }
+
+    this.userSubject.next(userToken);
   }
 }
