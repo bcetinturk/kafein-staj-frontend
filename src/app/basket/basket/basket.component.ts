@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {AuthService} from '../../auth/auth.service';
 
 interface Basket {
   productId: number;
@@ -18,14 +17,11 @@ export class BasketComponent implements OnInit {
   basket: Basket[];
 
   constructor(
-    private http: HttpClient,
-    private authService: AuthService) { }
+    private http: HttpClient) { }
 
   ngOnInit(): void {
-    const user = this.authService.userSubject.getValue();
-    this.http.get<Basket[]>('http://localhost:8080/user/basket', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
-    }).subscribe((resp) => {
+    this.http.get<Basket[]>('http://localhost:8080/user/basket')
+      .subscribe((resp) => {
       console.log(resp);
       this.basket = resp;
     });
@@ -36,21 +32,18 @@ export class BasketComponent implements OnInit {
   }
 
   deleteItem(productId: number): void {
-    const user = this.authService.userSubject.getValue();
-    this.http.delete(`http://localhost:8080/user/basket/${productId}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${user.token}`),
-    }).subscribe(() => {
+
+    this.http.delete(`http://localhost:8080/user/basket/${productId}`)
+      .subscribe(() => {
       // when the request is successful, delete item from locally
       this.basket = this.basket.filter(item => item.productId !== productId);
     });
   }
 
   placeOrder(): void {
-    const user = this.authService.userSubject.getValue();
-    this.http.post('http://localhost:8080/order/new', null,
-      {
-        headers: new HttpHeaders({'Authorization': `Bearer ${user.token}`})
-      }).subscribe(() => {
+
+    this.http.post('http://localhost:8080/order/new', null)
+      .subscribe(() => {
       console.log('orders placed');
     });
   }

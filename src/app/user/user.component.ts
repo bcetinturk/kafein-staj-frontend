@@ -17,11 +17,8 @@ export class UserComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit(): void {
-    const loggedInUser = this.authService.userSubject.getValue();
-
-    this.http.get<UserDetails>('http://localhost:8080/user', {
-      headers: new HttpHeaders({Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJlbi5lc2xla0BnbWFpbC5jb20iLCJleHAiOjE2MDE3MDIxMTIsImlhdCI6MTYwMTY2NjExMn0.y47Yae-Opt7FbUXqbCoH3TS62oAvK_TIkKHG90_MbBk`})
-    }).subscribe(user => {
+    this.http.get<UserDetails>('http://localhost:8080/user')
+      .subscribe(user => {
       this.user = user;
       console.log(user);
     });
@@ -35,9 +32,7 @@ export class UserComponent implements OnInit {
 
   submit(updateForm: NgForm): void {
     // TODO: add interceptor
-    this.http.patch('http://localhost:8080/user', updateForm.value, {
-      headers: new HttpHeaders({Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJlbi5lc2xla0BnbWFpbC5jb20iLCJleHAiOjE2MDE3MDIxMTIsImlhdCI6MTYwMTY2NjExMn0.y47Yae-Opt7FbUXqbCoH3TS62oAvK_TIkKHG90_MbBk`})
-    })
+    this.http.patch('http://localhost:8080/user', updateForm.value)
       .subscribe(() => {
         // updating was successful, update info locally
         Object.assign(this.user, updateForm.value);

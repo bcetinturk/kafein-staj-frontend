@@ -14,10 +14,8 @@ export class OrderService {
   constructor(private authService: AuthService, private http: HttpClient) { }
 
   getOrders(): Observable<Order[]> {
-    const user = this.authService.userSubject.getValue();
-    return this.http.get<Order[]>('http://localhost:8080/orders', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
-    }).pipe(tap(orders => {
+    return this.http.get<Order[]>('http://localhost:8080/orders')
+      .pipe(tap(orders => {
       this.orders = orders;
     }));
   }
@@ -29,11 +27,8 @@ export class OrderService {
         resolve(this.orders.find(order => order.orderId === orderId));
       }
 
-      const user = this.authService.userSubject.getValue();
       // Fallback to making request
-      this.http.get<Order>(`http://localhost:8080/order/${orderId}`, {
-        headers: new HttpHeaders({'Authorization': `Bearer ${user.token}`})
-      }).subscribe(order => {
+      this.http.get<Order>(`http://localhost:8080/order/${orderId}`).subscribe(order => {
         resolve(order);
       });
     });

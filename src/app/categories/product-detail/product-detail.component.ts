@@ -3,8 +3,7 @@ import {Product} from '../product.model';
 import {NgForm} from '@angular/forms';
 import {CategoriesService} from '../categories.service';
 import {ActivatedRoute} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {AuthService} from '../../auth/auth.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,8 +16,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private route: ActivatedRoute,
-    private http: HttpClient,
-    private authService: AuthService) { }
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.categoriesService.getProduct(+this.route.snapshot.params.id).subscribe((product) => {
@@ -33,12 +31,9 @@ export class ProductDetailComponent implements OnInit {
 
 
   onSubmit(f: NgForm): void {
-    const user = this.authService.userSubject.value;
     this.http.post('http://localhost:8080/user/basket', {
       productId: this.product.productId,
       amount: this.amount
-    }, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
     }).subscribe();
   }
 

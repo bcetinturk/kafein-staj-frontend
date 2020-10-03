@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CategoriesComponent } from './categories/categories.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ProductComponent } from './categories/product/product.component';
@@ -15,6 +15,7 @@ import { BasketComponent } from './basket/basket/basket.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './orders/order/order.component';
 import { UserComponent } from './user/user.component';
+import {AuthInterceptorService} from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { UserComponent } from './user/user.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
