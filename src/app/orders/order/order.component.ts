@@ -23,4 +23,10 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  cancelOrder(): void {
+    this.orderService.cancelOrder(this.order.orderId)
+      .subscribe(() => {
+        this.order.status = 'Cancelled';
+      });
+  }
 }

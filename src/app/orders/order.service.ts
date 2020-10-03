@@ -33,4 +33,8 @@ export class OrderService {
       });
     });
   }
+
+  cancelOrder(orderId: number): Observable<any> {
+    return this.http.patch(`http://localhost:8080/order/${orderId}`, null);
+  }
 }

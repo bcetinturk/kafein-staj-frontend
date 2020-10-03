@@ -1,0 +1,7 @@
+.cancelled {
+  background-color: #dededb;
+}
+
+.cancelled > a {
+  color: #898989;
+}

@@ -1,6 +1,6 @@
 <div class="row" *ngFor="let order of orders">
   <div class="col-lg-12 col-md-12">
-    <div class="card">
+    <div class="card" [ngClass]="{cancelled: order.status === 'Cancelled'}">
       <a [routerLink]="['/order', order.orderId]">
       <div class="card-body">
         <div class="row">
